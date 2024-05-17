@@ -1,20 +1,16 @@
-import Hero from "../Components/Hero";
-import Navbar from "../Components/Navbar";
+import Header from "../Components/Layouts/Header";
+import Hero from "../Components/Layouts/Hero";
+import Background from "../assets/Background.jpg";
 
 function Home() {
   return (
     <>
-      <section>
-        <div className="bg-[#ffff] min-h-screen">
-          <Navbar />
-          <div className="flex justify-center items-center px-4 lg:px-8">
-            <div className="w-full">
-              <div>
-                <Hero />
-              </div>
-            </div>
-          </div>
-        </div>
+      <section
+        className="bg-center bg-cover min-h-screen"
+        style={{ backgroundImage: `url(${Background})` }}
+      >
+        <Header />
+        <Hero />
       </section>
     </>
   );

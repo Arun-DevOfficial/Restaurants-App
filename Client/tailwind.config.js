@@ -5,7 +5,8 @@ export default {
     extend: {
       fontFamily: {
         pops: ["Poppins", "sans-serif"],
-        title: ["Inter", "sans-serif"],
+        title: ["Caveat", "cursive"],
+        header: ["bright"],
       },
     },
   },

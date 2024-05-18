@@ -6,7 +6,6 @@ export default {
       fontFamily: {
         pops: ["Poppins", "sans-serif"],
         title: ["Caveat", "cursive"],
-        header: ["bright"],
       },
     },
   },

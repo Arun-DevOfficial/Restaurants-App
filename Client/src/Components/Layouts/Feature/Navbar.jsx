@@ -48,22 +48,22 @@ export default function Navbar() {
           </button>
         </div>
         {open && (
-          <div className="absolute right-24 top-24 w-48 items-center p-3 bg-black/10 backdrop-blue-sm text-white rounded-lg shadow-md border flex flex-col space-y-4">
+          <div className="absolute right-24 top-24 w-48 items-center backdrop-blur-md p-3 bg-black/10 backdrop-blue-sm text-white rounded-lg shadow-md border border-white/10 flex flex-col space-y-4">
             <a
               href="#"
-              className="rounded-lg p-2 font-medium w-full bg-white/20 hover:bg-orange-500 hover:text-white text-center"
+              className="rounded-lg p-2 font-medium w-full bg-white/10 hover:bg-orange-500 hover:text-white text-center"
             >
               Profile
             </a>
             <a
               href="#"
-              className="rounded-lg p-2 bg-white/20 font-medium w-full hover:bg-orange-500 hover:text-white text-center"
+              className="rounded-lg p-2 bg-white/10 font-medium w-full hover:bg-orange-500 hover:text-white text-center"
             >
               Settings
             </a>
             <a
               href="#"
-              className="rounded-lg p-2 font-medium bg-white/20 w-full hover:bg-orange-500 hover:text-white text-center"
+              className="rounded-lg p-2 font-medium bg-white/10 w-full hover:bg-orange-500 hover:text-white text-center"
             >
               Logout
             </a>

@@ -1,4 +1,4 @@
-import Client from "../../assets/client.png";
+import Client from "../../assets/Client.png";
 import { FaRegStar, FaStar, FaStarHalf } from "react-icons/fa6";
 
 export default function Events() {

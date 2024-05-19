@@ -4,6 +4,9 @@ import Background from "../assets/Background.jpg";
 import Product from "../Components/Layouts/product";
 import Event from "../Components/Layouts/Events";
 import Gallary from "../Components/Layouts/Gallary";
+import Testimonial from "../Components/Layouts/Testimonial";
+import Feedbacks from "../Components/Layouts/Feedbacks";
+import Footer from "../Components/Layouts/Footer";
 
 function Home() {
   return (
@@ -18,6 +21,9 @@ function Home() {
       <Product />
       <Event />
       <Gallary />
+      <Testimonial />
+      <Feedbacks />
+      <Footer />
     </>
   );
 }

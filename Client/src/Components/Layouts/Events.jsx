@@ -1,4 +1,3 @@
-import Client from "../../assets/Client.png";
 import { FaRegStar, FaStar, FaStarHalf } from "react-icons/fa6";
 
 export default function Events() {
@@ -8,7 +7,7 @@ export default function Events() {
         <div className="mx-auto lg:w-[80%] flex my-44 flex-col lg:flex-row lg:justify-around lg:items-stretch space-y-8 lg:space-y-0">
           <div>
             <img
-              src={Client}
+              src="https://cdn.pixabay.com/photo/2024/03/19/15/49/woman-8643502_1280.png"
               alt="client"
               className="rounded-lg w-[500px] h-auto lg:h-[550px] rounded-tl-[50px] rounded-br-[50px]"
             />
@@ -30,7 +29,7 @@ export default function Events() {
                 <FaStar className="text-yellow-500" />
                 <FaStar className="text-yellow-500" />
                 <FaStarHalf className="text-yellow-500" />
-                <FaRegStar className="text-yellow-500"/>
+                <FaRegStar className="text-yellow-500" />
               </div>
             </div>
             <div>
@@ -49,7 +48,7 @@ export default function Events() {
                 <FaStar className="text-yellow-500" />
                 <FaStar className="text-yellow-500" />
                 <FaStarHalf className="text-yellow-500" />
-                <FaRegStar className="text-yellow-500"/>
+                <FaRegStar className="text-yellow-500" />
               </div>
             </div>
             <div>
@@ -68,7 +67,7 @@ export default function Events() {
                 <FaStar className="text-yellow-500" />
                 <FaStar className="text-yellow-500" />
                 <FaStarHalf className="text-yellow-500" />
-                <FaRegStar className="text-yellow-500"/>
+                <FaRegStar className="text-yellow-500" />
               </div>
             </div>
             <div>
@@ -87,7 +86,7 @@ export default function Events() {
                 <FaStar className="text-yellow-500" />
                 <FaStar className="text-yellow-500" />
                 <FaStarHalf className="text-yellow-500" />
-                <FaRegStar className="text-yellow-500"/>
+                <FaRegStar className="text-yellow-500" />
               </div>
             </div>
           </div>

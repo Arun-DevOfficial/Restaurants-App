@@ -4,21 +4,21 @@ export default function Feedbacks() {
   const testimonials = {
     testimonials: [
       {
-        photo: "https://source.unsplash.com/random/1",
+        photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
         username: "Emily Smith",
         role: "Food Blogger",
         feedback:
           "As a food enthusiast, I've dined at countless places, but none compare to the culinary journey at your Thai food paradise. Each dish is a masterpiece, and the ambiance is simply enchanting.",
       },
       {
-        photo: "https://source.unsplash.com/random/2",
+        photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHVzZXJ8ZW58MHx8MHx8fDA%3D",
         username: "Alex Johnson",
         role: "Event Planner",
         feedback:
           "Planning events is my passion, and finding the perfect venue is key. Your restaurant not only exceeds expectations in flavor but also in service and ambiance. It's become my go-to recommendation for any celebration.",
       },
       {
-        photo: "https://source.unsplash.com/random/3",
+        photo: "https://plus.unsplash.com/premium_photo-1670071482460-5c08776521fe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D",
         username: "Jessica Wong",
         role: "Local Food Critic",
         feedback:

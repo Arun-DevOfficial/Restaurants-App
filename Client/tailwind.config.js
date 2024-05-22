@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         pops: ["Poppins", "sans-serif"],
         title: ["Caveat", "cursive"],
+        offer: ["Bricolage Grotesque", "sans-serif"],
       },
     },
   },

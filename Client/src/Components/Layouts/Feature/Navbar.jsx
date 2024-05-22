@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Logo from "../../../assets/Logo.png";
+import { Link } from "react-router-dom";
+import { FaRegUser } from "react-icons/fa6";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -24,49 +26,55 @@ export default function Navbar() {
         </div>
         <ul className="hidden lg:flex space-x-6 capitalize">
           <li>
-            <a href="#">home</a>
+            <Link href="/">home</Link>
           </li>
           <li>
-            <a href="#">about</a>
+            <Link href="#">about</Link>
           </li>
           <li>
-            <a href="#">menu</a>
+            <Link href="#">menu</Link>
           </li>
           <li>
-            <a href="#">event</a>
+            <Link href="#">event</Link>
           </li>
           <li>
-            <a href="#">contact</a>
+            <Link href="#">contact</Link>
           </li>
         </ul>
-        <div className="flex space-x-10 items-center">
-          <h1 className="cursor-pointer hidden lg:block" onClick={toggleDropdown}>
-            Account
-          </h1>
-          <button className="font-medium text-md ml-3 bg-[#ea6d27] hover:bg-[#ea6d27]/90 rounded-tr-md rounded-bl-md rounded-tl-[12px] rounded-br-[12px] text-white px-6 py-3 shadow-lg shadow-black/20 hidden lg:block">
+        <div className="flex space-x-3 items-center">
+          <div className="flex gap-3 items-center pr-5">
+            <FaRegUser />
+            <h1
+              className="cursor-pointer hidden lg:block"
+              onClick={toggleDropdown}
+            >
+              Account
+            </h1>
+          </div>
+          <button className="font-medium text-md bg-[#ea6d27] hover:bg-[#ea6d27]/90 rounded-tr-md rounded-bl-md rounded-tl-[12px] rounded-br-[12px] text-white px-6 py-3 shadow-lg shadow-black/20 hidden lg:block">
             Book a table
           </button>
         </div>
         {open && (
           <div className="absolute right-24 top-24 w-48 items-center backdrop-blur-md p-3 bg-black/10 backdrop-blue-sm text-white rounded-lg shadow-md border border-white/10 flex flex-col space-y-4">
-            <a
-              href="#"
+            <Link
+              to="/profile"
               className="rounded-lg p-2 font-medium w-full bg-white/10 hover:bg-orange-500 hover:text-white text-center"
             >
               Profile
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="rounded-lg p-2 bg-white/10 font-medium w-full hover:bg-orange-500 hover:text-white text-center"
             >
               Settings
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="rounded-lg p-2 font-medium bg-white/10 w-full hover:bg-orange-500 hover:text-white text-center"
             >
               Logout
-            </a>
+            </Link>
           </div>
         )}
       </nav>

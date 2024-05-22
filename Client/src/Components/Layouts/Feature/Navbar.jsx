@@ -26,19 +26,19 @@ export default function Navbar() {
         </div>
         <ul className="hidden lg:flex space-x-6 capitalize">
           <li>
-            <Link href="/">home</Link>
+            <Link to="#">home</Link>
           </li>
           <li>
-            <Link href="#">about</Link>
+            <Link to="#">about</Link>
           </li>
           <li>
-            <Link href="#">menu</Link>
+            <Link to="#">menu</Link>
           </li>
           <li>
-            <Link href="#">event</Link>
+            <Link to="#">event</Link>
           </li>
           <li>
-            <Link href="#">contact</Link>
+            <Link to="#">contact</Link>
           </li>
         </ul>
         <div className="flex space-x-3 items-center">
@@ -64,13 +64,13 @@ export default function Navbar() {
               Profile
             </Link>
             <Link
-              href="#"
+              to="#"
               className="rounded-lg p-2 bg-white/10 font-medium w-full hover:bg-orange-500 hover:text-white text-center"
             >
               Settings
             </Link>
             <Link
-              href="#"
+              to="#"
               className="rounded-lg p-2 font-medium bg-white/10 w-full hover:bg-orange-500 hover:text-white text-center"
             >
               Logout

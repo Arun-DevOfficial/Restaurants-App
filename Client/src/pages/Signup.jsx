@@ -1,10 +1,20 @@
 import { Link } from "react-router-dom";
+import Logo from "../assets/Logo.png";
 
 export default function Signup() {
   return (
     <>
       <section className="h-screen bg-slate-100 flex flex-col lg:flex-row">
         <div className="relative bg-[url(https://images.unsplash.com/photo-1512442768687-8073560351ab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fHJlc3RhdXJhbnQlMjBpbWFnZXxlbnwwfDF8MHx8fDA%3D)] w-4/12 bg-cover bg-center flex-shrink-0">
+          <Link
+            to={`/`}
+            className="flex items-center absolute left-2 top-8 cursor-pointer"
+          >
+            <img src={Logo} alt="Logo" className="max-w-14" />
+            <h1 className="text-xl font-semibold text-white">
+              Thaai <span className="text-orange-500">food</span>
+            </h1>
+          </Link>
           <div className="bg-white/10 border border-slate-100/20 text-white absolute bottom-10 w-full lg:max-w-[70%] rounded-[20px] left-24 py-7 px-6 shadow-lg">
             <div className="flex gap-3 rounded-full px-4 py-1 shadow-sm cursor-pointer my-5 bg-orange-500 w-full lg:max-w-[50%]">
               <p>✨</p>
@@ -20,7 +30,12 @@ export default function Signup() {
           <div className="self-end">
             <h1 className="font-semibold font-offer">
               Have an account?{" "}
-              <Link className="text-orange-500 hover:underline">Login</Link>
+              <Link
+                to={`/profile/Login`}
+                className="text-orange-500 hover:underline"
+              >
+                Login
+              </Link>
             </h1>
           </div>
 

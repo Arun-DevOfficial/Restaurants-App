@@ -14,7 +14,7 @@ export default function Signup() {
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target.value;
+    const { name, value } = e.target; // Changed from e.target.value to e.target
     setFormData({
       ...formData,
       [name]: value,
@@ -22,16 +22,13 @@ export default function Signup() {
   };
 
   const handleSubmit = async (e) => {
+    console.log(formData);
     e.preventDefault();
     try {
-      const response = await axios({
-        method: "post",
-        url: `${import.meta.env.VITE_BACKEND_URL}`,
-        data: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json", // Ensure the content type is set
-        },
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/signup`,
+        { formData }
+      );
 
       let message;
       if (response.status >= 200 && response.status < 300) {
@@ -48,7 +45,6 @@ export default function Signup() {
     } catch (error) {
       // Handle the error
       toast.error("Internal Server Error Occurred");
-      console.error("There was an error!", error);
     }
   };
 
@@ -114,7 +110,7 @@ export default function Signup() {
                 <input
                   type="text"
                   placeholder="Full Name"
-                  name="fullname"
+                  name="fullName"
                   className="bg-white rounded-lg font-offer w-full p-5 border-2 focus:outline-none focus:border-orange-200"
                   onChange={handleInputChange}
                 />

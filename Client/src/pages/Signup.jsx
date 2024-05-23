@@ -1,7 +1,57 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/Logo.png";
+import { useState } from "react";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Signup() {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target.value;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios({
+        method: "post",
+        url: `${import.meta.env.VITE_BACKEND_URL}`,
+        data: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json", // Ensure the content type is set
+        },
+      });
+
+      let message;
+      if (response.status >= 200 && response.status < 300) {
+        message = response.data.message;
+      } else {
+        message = "Error Occurred";
+      }
+      toast.success(message);
+
+      // Navigate to login
+      setTimeout(() => {
+        navigate("/Login");
+      }, 2000);
+    } catch (error) {
+      // Handle the error
+      toast.error("Internal Server Error Occurred");
+      console.error("There was an error!", error);
+    }
+  };
+
   return (
     <>
       <section className="h-screen bg-slate-100 flex flex-col lg:flex-row">
@@ -57,16 +107,21 @@ export default function Signup() {
                   </div>
                 </div>
               </div>
-              <div className="my-12 w-full mx-auto flex flex-col gap-6">
+              <form
+                className="my-12 w-full mx-auto flex flex-col gap-6"
+                onSubmit={handleSubmit}
+              >
                 <input
                   type="text"
                   placeholder="Full Name"
                   name="fullname"
                   className="bg-white rounded-lg font-offer w-full p-5 border-2 focus:outline-none focus:border-orange-200"
+                  onChange={handleInputChange}
                 />
                 <input
                   type="email"
                   name="email"
+                  onChange={handleInputChange}
                   placeholder="Email"
                   className="bg-white font-offer rounded-lg w-full p-5 border-2 focus:outline-none focus:border-orange-200"
                 />
@@ -74,11 +129,11 @@ export default function Signup() {
                   <input
                     type="password"
                     name="password"
+                    onChange={handleInputChange}
                     placeholder="Password"
                     className="w-full focus:outline-none font-offer focus:border-transparent hover:border-orange-300"
                   />
                 </div>
-
                 <button className="bg-orange-400 rounded-2xl w-full p-5 border-2 font-medium text-white font-offer hover:bg-orange-500">
                   Create Account
                 </button>
@@ -86,11 +141,12 @@ export default function Signup() {
                   By Continuing you indicate that you read and agreed to the
                   Terms of Use.
                 </p>
-              </div>
+              </form>
             </div>
           </div>
         </div>
       </section>
+      <Toaster />
     </>
   );
 }

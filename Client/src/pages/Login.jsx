@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Cookies from "universal-cookie";
 import "../pages/style.css";
 
 export default function Login() {
@@ -13,7 +14,7 @@ export default function Login() {
   // Schema for formData validation
   const schema = z.object({
     email: z.string().email(),
-    password: z.string().min(8), // Assuming minimum length of 8 characters for password
+    password: z.string().min(8),
   });
 
   // useForm hook for form management and validation
@@ -22,7 +23,7 @@ export default function Login() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: zodResolver(schema), // Applying Zod schema validation resolver
+    resolver: zodResolver(schema), 
   });
 
   // Function to handle form submission
@@ -37,12 +38,17 @@ export default function Login() {
 
       // Handling response messages
       let message;
+      const cookie = new Cookies();
       if (response.status >= 200 && response.status < 300) {
         message = response.data.message;
+        cookie.set("token", response.data.token, {
+          expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // Expires in 90 days
+          httpOnly: true,
+        });
       } else {
-        message = response.status.message;
+        message = response.statusText;
       }
-      toast.success(message); // Displaying success message using toast
+      toast.success(message);
 
       // Navigating to login page after signup
       setTimeout(() => {
@@ -168,5 +174,3 @@ export default function Login() {
     </>
   );
 }
-
-

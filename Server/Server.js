@@ -13,9 +13,11 @@ const PORT = process.env.PORT || 5050;
 
 //DB Connection
 mongoose
-  .connect("mongodb://localhost:27017")
+  .connect(
+    "mongodb+srv://arunkum:dev_2050@cluster0.jaxeuud.mongodb.net/Restaurant_App?retryWrites=true&w=majority&appName=Cluster0"
+  )
   .then(() => {
-    console.log("Connected...");
+    console.log("Database Connected...");
   })
   .catch((error) => {
     console.log("NOT CONNECTED!");

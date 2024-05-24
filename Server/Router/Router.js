@@ -1,7 +1,8 @@
 import express from "express";
+import cors from "cors";
 import { handleSignUp, handleLogin } from "../Controller/userAuth.js";
 import { LoggerMiddleware } from "../Middleware/Logger.js";
-import cors from "cors";
+import { handleServerRuning } from "../Controller/test.js";
 
 // Router Config
 const router = express.Router();
@@ -13,5 +14,6 @@ router.use(cors());
 // Routes
 router.post("/signup", handleSignUp); // POST route for user sign-up
 router.post("/login", handleLogin); // POST route for user login
+router.get("/test", handleServerRuning);
 
 export { router };

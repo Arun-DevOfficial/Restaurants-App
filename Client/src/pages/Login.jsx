@@ -74,7 +74,7 @@ export default function Login() {
             </h1>
           </Link>
           {/* Information and branding */}
-          <div className="bg-white/10 border border-slate-100/20 text-white absolute bottom-10 w-full lg:max-w-[70%] rounded-[20px] left-24 py-7 px-6 shadow-lg">
+          <div className="hidden lg:block bg-white/10 border border-slate-100/20 text-white absolute bottom-10 w-full lg:max-w-[70%] rounded-[20px] left-24 py-7 px-6 shadow-lg">
             <div className="flex gap-3 rounded-full px-4 py-1 shadow-sm cursor-pointer my-5 bg-orange-500 w-full lg:max-w-[50%]">
               <p>✨</p>
               <h1 className="font-bold flex-shrink-0">Have a nice day</h1>

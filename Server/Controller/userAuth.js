@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 const handleSignUp = async (req, res) => {
   const { fullName, email, password } = req.body;
-
+  // console.log(req.body);
   //Error Handling
   try {
     // Check if both username, password, and role are provided
@@ -49,15 +49,14 @@ const handleSignUp = async (req, res) => {
 };
 
 const handleLogin = async (req, res) => {
-  const { fullName, email, password } = req.body;
-
+  const { email, password } = req.body;
   // Error Handling
   try {
     // Check if fullName, email, and password are provided
-    if (!fullName || !email || !password) {
+    if (!email || !password) {
       return res
         .status(400)
-        .json({ message: "Fullname, email, and password are required!" });
+        .json({ message: "Email, and password are required!" });
     }
 
     // Check if the user with the provided email exists

@@ -12,7 +12,6 @@ export default function Login() {
 
   // Schema for formData validation
   const schema = z.object({
-    fullName: z.string().nonempty("Full name is required"),
     email: z.string().email(),
     password: z.string().min(8), // Assuming minimum length of 8 characters for password
   });
@@ -34,17 +33,14 @@ export default function Login() {
       console.log(data);
 
       // Sending form data to the backend for signup
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/signup`,
-        { data }
-      );
+      const response = await axios.post(`http://localhost:8060/Login`, data);
 
       // Handling response messages
       let message;
       if (response.status >= 200 && response.status < 300) {
         message = response.data.message;
       } else {
-        message = "Error Occurred";
+        message = response.status.message;
       }
       toast.success(message); // Displaying success message using toast
 
@@ -172,3 +168,5 @@ export default function Login() {
     </>
   );
 }
+
+

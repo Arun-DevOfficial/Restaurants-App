@@ -34,23 +34,18 @@ export default function Signup() {
       console.log(data);
 
       // Sending form data to the backend for signup
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/signup`,
-        { data }
-      );
+      const response = await axios.post(`http://localhost:8060/signup`, data);
 
       // Handling response messages
       let message;
       if (response.status >= 200 && response.status < 300) {
         message = response.data.message;
-      } else {
-        message = "Error Occurred";
       }
-      toast.success(message); // Displaying success message using toast
 
+      toast.success(message); // Displaying success message using toast
       // Navigating to login page after signup
       setTimeout(() => {
-        navigate("/Login");
+        navigate("/profile/Login");
       }, 2000);
     } catch (error) {
       console.log(error);
@@ -90,7 +85,7 @@ export default function Signup() {
           <div className="self-end">
             {/* Link to login page */}
             <h1 className="font-semibold font-offer">
-              Have an account?{" "}
+              Already have an account?{" "}
               <Link
                 to={`/profile/Login`}
                 className="text-orange-500 hover:underline"

@@ -1,5 +1,5 @@
 const handleSignUp = async (req, res) => {
-  const { fullName, email, password } = req.body.formData;
+  const { fullName, email, password } = req.body.data;
 
   //Check if email and password are provided
   if (!email || !password || !fullName) {

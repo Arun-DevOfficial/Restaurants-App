@@ -1,32 +1,38 @@
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/Logo.png";
-import { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { useForm } from "react-hook-form";
+import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import "../pages/style.css";
 
 export default function Signup() {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    password: "",
-  });
-
   const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target; // Changed from e.target.value to e.target
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-  const handleSubmit = async (e) => {
-    console.log(formData);
-    e.preventDefault();
+  //Schema for formData
+  const schema = z.object({
+    fullName: z.string().nonempty("Full name is required"),
+    email: z.string().email(),
+    password: z.string().min(8), // Assuming minimum length of 6 characters
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
+
+  //Hook Form Setup
+  const onSubmit = async (data) => {
     try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      console.log(data);
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/signup`,
-        { formData }
+        { data }
       );
 
       let message;
@@ -42,8 +48,7 @@ export default function Signup() {
         navigate("/Login");
       }, 2000);
     } catch (error) {
-      // Handle the error
-      toast.error("Internal Server Error Occurred");
+      console.log(error);
     }
   };
 
@@ -104,39 +109,61 @@ export default function Signup() {
               </div>
               <form
                 className="my-12 w-full mx-auto flex flex-col gap-6"
-                onSubmit={handleSubmit}
+                onSubmit={handleSubmit(onSubmit)}
               >
                 <input
                   type="text"
                   placeholder="Full Name"
                   name="fullName"
                   className="bg-white rounded-lg font-offer w-full p-5 border-2 focus:outline-none focus:border-orange-200"
-                  onChange={handleInputChange}
+                  {...register("fullName")}
                 />
+                {errors.fullName && (
+                  <p className="text-red-500 font-offer">
+                    {errors.fullName.message}
+                  </p>
+                )}
+
                 <input
                   type="email"
                   name="email"
-                  onChange={handleInputChange}
                   placeholder="Email"
                   className="bg-white font-offer rounded-lg w-full p-5 border-2 focus:outline-none focus:border-orange-200"
+                  {...register("email")}
                 />
+                {errors.email && (
+                  <p className="text-red-500 font-offer">
+                    {errors.email.message}
+                  </p>
+                )}
+
                 <div className="bg-white rounded-lg w-full p-5 border border-gray-300 focus-within:border-orange-300">
                   <input
                     type="password"
                     name="password"
-                    onChange={handleInputChange}
                     placeholder="Password"
                     className="w-full focus:outline-none font-offer focus:border-transparent hover:border-orange-300"
+                    {...register("password")}
                   />
                 </div>
-                <button className="bg-orange-400 rounded-2xl w-full p-5 border-2 font-medium text-white font-offer hover:bg-orange-500">
-                  Create Account
+                {errors.password && (
+                  <p className="text-red-500 font-offer">
+                    {errors.password.message}
+                  </p>
+                )}
+                <button
+                  disabled={isSubmitting}
+                  className="bg-orange-400 items-center justify-center flex space-x-6 rounded-xl w-full p-5 border-2 font-medium text-white font-offer hover:bg-orange-500"
+                >
+                  {isSubmitting && <div className="loader" />}
+                  <h1>{isSubmitting ? "Loading..." : "Create Account"}</h1>
                 </button>
-                <p className="text-md font-offer text-slate-500">
-                  By Continuing you indicate that you read and agreed to the
-                  Terms of Use.
-                </p>
               </form>
+
+              <p className="text-md font-offer text-slate-500">
+                By Continuing you indicate that you read and agreed to the Terms
+                of Use.
+              </p>
             </div>
           </div>
         </div>

@@ -1,9 +1,13 @@
 import express from "express";
 import { router } from "./Router/Router.js";
 import mongoose from "mongoose";
+import { configDotenv } from "dotenv";
 
 // Express setup
 const app = express();
+
+//.env file config
+configDotenv();
 
 // Router Setup
 app.use(router);
@@ -13,9 +17,7 @@ const PORT = process.env.PORT || 5050;
 
 //DB Connection
 mongoose
-  .connect(
-    "mongodb+srv://arunkum:dev_2050@cluster0.jaxeuud.mongodb.net/Restaurant_App?retryWrites=true&w=majority&appName=Cluster0"
-  )
+  .connect(process.env.MONGODB_URL)
   .then(() => {
     console.log("Database Connected...");
   })

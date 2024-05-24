@@ -1,6 +1,8 @@
 import UserModel from "../Model/User.js";
 import bcrypt from "bcrypt";
 
+import jwt from "jsonwebtoken";
+
 const handleSignUp = async (req, res) => {
   const { fullName, email, password } = req.body;
 
@@ -49,20 +51,17 @@ const handleSignUp = async (req, res) => {
 const handleLogin = async (req, res) => {
   const { fullName, email, password } = req.body;
 
-  //Error Handling
+  // Error Handling
   try {
-    // Check if both username, password, and role are provided
+    // Check if fullName, email, and password are provided
     if (!fullName || !email || !password) {
       return res
         .status(400)
-        .json({ message: "Fullname, email, password are required!" });
+        .json({ message: "Fullname, email, and password are required!" });
     }
 
-    // Check if the user with the same username and role exists
-    const existingUser = await UserModel.findOne({
-      fullName: fullName,
-      email: email,
-    });
+    // Check if the user with the provided email exists
+    const existingUser = await UserModel.findOne({ email: email });
 
     if (!existingUser) {
       // User doesn't exist
@@ -73,12 +72,26 @@ const handleLogin = async (req, res) => {
     const passwordMatch = await bcrypt.compare(password, existingUser.password);
 
     if (passwordMatch) {
-      return res.status(200).json({ message: "User login successfully." });
+      // Generate a token
+      const token = jwt.sign(
+        { email: existingUser.email },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+          expiresIn: "90d",
+        }
+      );
+
+      const cookieOptions = {
+        expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+      };
+
+      res.cookie("jwt", token, cookieOptions);
+
+      return res.status(200).json({ message: "User login successful." });
     } else {
       // Password doesn't match
-      return res
-        .status(401)
-        .json({ message: "Incorrect username or password." });
+      return res.status(401).json({ message: "Incorrect email or password." });
     }
   } catch (error) {
     // Internal server error

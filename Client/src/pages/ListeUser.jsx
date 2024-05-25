@@ -9,7 +9,7 @@ export default function ListeUser() {
 
   const handleListeUser = async () => {
     const response = await axios.get("http://localhost:8060/test", {
-      withCredentials: true,
+      credentials: "include",
     });
     console.log(response.data);
   };

@@ -58,15 +58,65 @@ const handleSignUp = async (req, res) => {
   }
 };
 
+// const handleLogin = async (req, res) => {
+//   const { email, password } = req.body;
+//   // Error Handling
+//   try {
+//     // Check if fullName, email, and password are provided
+//     if (!email || !password) {
+//       return res
+//         .status(400)
+//         .json({ message: "Email, and password are required!" });
+//     }
+
+//     // Check if the user with the provided email exists
+//     const existingUser = await UserModel.findOne({ email: email });
+
+//     if (!existingUser) {
+//       // User doesn't exist
+//       return res.status(401).json({ message: "User not found." });
+//     }
+
+//     // Compare passwords
+//     const passwordMatch = await bcrypt.compare(password, existingUser.password);
+
+//     if (passwordMatch) {
+//       // Generate a token
+//       const token = await jwt.sign(
+//         { email: existingUser.email },
+//         process.env.ACCESS_TOKEN_SECRET,
+//         {
+//           expiresIn: "90d",
+//         }
+//       );
+//       console.log(token);
+
+//       const cookieOptions = {
+//         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+//         httpOnly: true,
+//       };
+//       res.cookie("jwt", token, cookieOptions);
+//       return res.status(200).json({ message: "User login successful." });
+//     } else {
+//       // Password doesn't match
+//       return res.status(401).json({ message: "Incorrect email or password." });
+//     }
+//   } catch (error) {
+//     // Internal server error
+//     console.error("Error in sign in:", error);
+//     return res.status(500).json({ message: "Internal server error" });
+//   }
+// };
+
 const handleLogin = async (req, res) => {
   const { email, password } = req.body;
   // Error Handling
   try {
-    // Check if fullName, email, and password are provided
+    // Check if email and password are provided
     if (!email || !password) {
       return res
         .status(400)
-        .json({ message: "Email, and password are required!" });
+        .json({ message: "Email and password are required!" });
     }
 
     // Check if the user with the provided email exists
@@ -82,20 +132,24 @@ const handleLogin = async (req, res) => {
 
     if (passwordMatch) {
       // Generate a token
-      const token = await jwt.sign(
+      const token = jwt.sign(
         { email: existingUser.email },
         process.env.ACCESS_TOKEN_SECRET,
         {
           expiresIn: "90d",
         }
       );
-      console.log(token);
 
-      const cookieOptions = {
-        expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-        httpOnly: true,
-      };
-      res.cookie("jwt", token, cookieOptions);
+      // Set the token as a cookie
+      res.cookie("jwt", token, {
+        maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
+        // httpOnly: true, // This makes the cookie HttpOnly
+        // Secure: true, // Uncomment this if your site uses HTTPS
+        // SameSite: 'None', // Uncomment this if your site is accessed cross-domain
+        // domain: 'yourdomain.com', // Uncomment and replace 'yourdomain.com' with your actual domain if needed
+        // path: '/', // Uncomment and replace '/' with the path you want the cookie to be accessible from
+      });
+
       return res.status(200).json({ message: "User login successful." });
     } else {
       // Password doesn't match

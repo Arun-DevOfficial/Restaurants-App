@@ -33,7 +33,11 @@ export default function Login() {
       console.log(data);
 
       // Sending form data to the backend for signup
-      const response = await axios.post(`http://localhost:8060/Login`, data);
+      const response = await axios.post(
+        `http://localhost:8060/Login`,
+        data,
+        {}
+      );
 
       // Handling response messages
       let message;

@@ -5,7 +5,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Cookies from "universal-cookie";
 import "../pages/style.css";
 
 export default function Login() {
@@ -23,7 +22,7 @@ export default function Login() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: zodResolver(schema), 
+    resolver: zodResolver(schema),
   });
 
   // Function to handle form submission
@@ -38,13 +37,8 @@ export default function Login() {
 
       // Handling response messages
       let message;
-      const cookie = new Cookies();
       if (response.status >= 200 && response.status < 300) {
         message = response.data.message;
-        cookie.set("token", response.data.token, {
-          expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // Expires in 90 days
-          httpOnly: true,
-        });
       } else {
         message = response.statusText;
       }

@@ -1,11 +1,13 @@
-const handleServerRuning = (req, res) => {
-  // res.json("Server is running");
+import UserModel from "../Model/User.js";
 
-  const cookieOptions = {
-    expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-    httpOnly: true,
-  };
-  res.status(201).cookie("jwt", "hsjhgjshg", cookieOptions).json("Cookie sent");
+const handleServerRuning = async (req, res) => {
+  console.log(req.cookies.jwt);
+  if (req.cookies.jwt) {
+    const response = await UserModel.find();
+    res.json(response);
+  } else {
+    console.log("ERROR");
+  }
 };
 
 export { handleServerRuning };

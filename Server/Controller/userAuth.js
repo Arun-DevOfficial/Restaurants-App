@@ -1,7 +1,10 @@
 import UserModel from "../Model/User.js";
 import bcrypt from "bcrypt";
-
 import jwt from "jsonwebtoken";
+import { configDotenv } from "dotenv";
+
+//env file config
+configDotenv();
 
 const handleSignUp = async (req, res) => {
   const { fullName, email, password } = req.body;
@@ -26,15 +29,22 @@ const handleSignUp = async (req, res) => {
         message: "User already exists. Please try to login instead.",
       });
     }
+    const payload = {
+      fullName,
+      email,
+      password,
+    };
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
+    const token = await jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET); // create a token
 
     // Create a new user instance with the provided role
     const newUser = new UserModel({
       fullName: fullName,
       email: email,
       password: hashedPassword,
+      token: token,
     });
 
     // Save the new user to the database
@@ -72,25 +82,21 @@ const handleLogin = async (req, res) => {
 
     if (passwordMatch) {
       // Generate a token
-      const token = jwt.sign(
+      const token = await jwt.sign(
         { email: existingUser.email },
         process.env.ACCESS_TOKEN_SECRET,
         {
           expiresIn: "90d",
         }
       );
+      console.log(token);
 
       const cookieOptions = {
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         httpOnly: true,
       };
-
-      // res.cookie("jwt", token, cookieOptions);
-
-      return res
-        .status(200)
-        .cookie("token", token, cookieOptions)
-        .json({ message: "User login successful." });
+      res.cookie("jwt", token, cookieOptions);
+      return res.status(200).json({ message: "User login successful." });
     } else {
       // Password doesn't match
       return res.status(401).json({ message: "Incorrect email or password." });

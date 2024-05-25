@@ -1,14 +1,14 @@
 import jwt from "jsonwebtoken";
-import UserModel from "../Model/User.js"; // Import your user model
 import { configDotenv } from "dotenv";
 
 //env file config
 configDotenv();
 
 const verifyAdmin = async (req, res, next) => {
+  const token = req.cookies.jwt;
+  
   try {
     // Get the token from the request cookies
-    const token = req.cookies.jwt;
     console.log(token);
     if (!token) {
       return res.status(401).json({
@@ -30,8 +30,6 @@ const verifyAdmin = async (req, res, next) => {
         .status(401)
         .json({ message: "Invalid token. User not found." });
     }
-
-    // Attach the user object to the request for further processing
     req.user = user;
     // Move to the next middleware or route handler
     next();

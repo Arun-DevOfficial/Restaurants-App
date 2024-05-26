@@ -15,7 +15,7 @@ router.use(express.json());
 router.use(cookieParser());
 router.use(
   cors({
-    origin: "https://restaurantsapp-git-master-arundevils-projects.vercel.app",
+    // origin: "https://restaurantsapp-git-master-arundevils-projects.vercel.app",
     credentials: true
   })
 );

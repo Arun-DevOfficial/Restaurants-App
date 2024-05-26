@@ -15,7 +15,7 @@ router.use(express.json());
 router.use(cookieParser());
 router.use(
   cors({
-    origin: "https://restaurants-app-aqfv.vercel.app",
+    origin: "https://restaurants-app-green.vercel.app",
     credentials: true,
   })
 );

@@ -91,8 +91,10 @@ const handleLogin = async (req, res) => {
         sameSite: true,
         domain: ".restaurants-app-green.vercel.app/",
       };
-      res.cookie("jwt", token, cookieOptions);
-      return res.status(200).json({ message: "User login successful." });
+      return res
+        .status(200)
+        .cookie("jwt", token, cookieOptions)
+        .json({ message: "User login successful." });
     } else {
       // Password doesn't match
       return res.status(401).json({ message: "Incorrect email or password." });

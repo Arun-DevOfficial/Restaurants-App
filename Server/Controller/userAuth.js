@@ -88,7 +88,7 @@ const handleLogin = async (req, res) => {
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         httpOnly: true,
         secure: true,
-        sameSite: "none",
+        sameSite: true,
         // domain: ".restaurants-app-aqfv.vercel.app",
       };
       res.cookie("jwt", token, cookieOptions);

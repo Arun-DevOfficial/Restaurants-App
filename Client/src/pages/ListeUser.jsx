@@ -9,7 +9,7 @@ export default function ListeUser() {
   const handleListeUser = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/test`,
+        `https://restaurantsapp-git-master-arundevils-projects.vercel.app/test`,
         {
           headers: {
             "Content-Type": "application/json",

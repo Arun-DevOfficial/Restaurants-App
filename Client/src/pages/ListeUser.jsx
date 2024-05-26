@@ -1,4 +1,3 @@
-// import React from 'react'
 import axios from "axios";
 import { useEffect } from "react";
 
@@ -8,10 +7,17 @@ export default function ListeUser() {
   }, []);
 
   const handleListeUser = async () => {
-    const response = await axios.get("http://localhost:8060/test", {
-      credentials: "include",
-    });
-    console.log(response.data);
+    try {
+      const response = await axios.get("http://localhost:8060/test", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true, // Fix: withCredentials should be boolean
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching user list:", error);
+    }
   };
   return <div>ListeUser</div>;
 }

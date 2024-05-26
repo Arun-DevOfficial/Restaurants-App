@@ -90,7 +90,7 @@ export default function Login() {
           <div className="self-end">
             {/* Link to login page */}
             <h1 className="font-semibold font-offer">
-              Don't have an account?{" "}
+              Do not have an account?{" "}
               <Link to={`/profile`} className="text-orange-500 hover:underline">
                 Signup
               </Link>

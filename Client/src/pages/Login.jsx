@@ -37,7 +37,7 @@ export default function Login() {
 
       // Sending form data to the backend for signup
       const response = await axios.post(
-        `https://restaurantsapp-git-master-arundevils-projects.vercel.app/Login`,
+        `/https://restaurantserver-app.vercel.app/Login`,
         data,
         {
           headers: {

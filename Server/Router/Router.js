@@ -24,5 +24,8 @@ router.use(
 router.post("/signup", handleSignUp);
 router.post("/login", handleLogin);
 router.get("/test", VerifyUser, handleServerRuning);
+router.get("/view", (req, res) => {
+  res.json("Server is running...");
+});
 
 export { router };

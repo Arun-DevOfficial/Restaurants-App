@@ -43,7 +43,9 @@ const handleSignUp = async (req, res) => {
     await newUser.save();
 
     // Registration successful
-    res.status(201).json({ message: "User registered successfully", fullName });
+    res
+      .status(201)
+      .json({ message: "User registered successfully", fullName: fullName });
   } catch (error) {
     console.error(error); // Log the error for debugging
     res.status(500).json({ message: "Internal server error" });

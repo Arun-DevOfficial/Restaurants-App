@@ -89,7 +89,7 @@ const handleLogin = async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: true,
-        // domain: ".restaurants-app-aqfv.vercel.app",
+        domain: ".restaurants-app-green.vercel.app/",
       };
       res.cookie("jwt", token, cookieOptions);
       return res.status(200).json({ message: "User login successful." });

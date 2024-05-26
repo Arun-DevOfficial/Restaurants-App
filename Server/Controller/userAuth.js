@@ -88,6 +88,7 @@ const handleLogin = async (req, res) => {
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         httpOnly: true,
         secure: true,
+        sameSite: "none",
         domain: ".restaurantsapp-git-master-arundevils-projects.vercel.app",
       };
       res.cookie("jwt", token, cookieOptions);
@@ -103,4 +104,9 @@ const handleLogin = async (req, res) => {
   }
 };
 
-export { handleSignUp, handleLogin };
+//Handle Logout
+const handleLogout = (req, res) => {
+  res.clearCookie("jwt", { sameSite: "none", secure: true }).status(200).json();
+};
+
+export { handleSignUp, handleLogin, handleLogout };

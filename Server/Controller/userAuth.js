@@ -29,29 +29,21 @@ const handleSignUp = async (req, res) => {
         message: "User already exists. Please try to login instead.",
       });
     }
-    const payload = {
-      fullName,
-      email,
-      password,
-    };
-
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
-    const token = await jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET); // create a token
 
     // Create a new user instance with the provided role
     const newUser = new UserModel({
       fullName: fullName,
       email: email,
       password: hashedPassword,
-      token: token,
     });
 
     // Save the new user to the database
     await newUser.save();
 
     // Registration successful
-    res.status(201).json({ message: "User registered successfully" });
+    res.status(201).json({ message: "User registered successfully", fullName });
   } catch (error) {
     console.error(error); // Log the error for debugging
     res.status(500).json({ message: "Internal server error" });
@@ -93,6 +85,7 @@ const handleLogin = async (req, res) => {
       const cookieOptions = {
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         httpOnly: true,
+        domain: "localhost",
       };
       res.cookie("jwt", token, cookieOptions);
       return res.status(200).json({ message: "User login successful." });

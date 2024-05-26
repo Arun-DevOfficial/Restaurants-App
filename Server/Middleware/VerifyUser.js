@@ -1,15 +1,14 @@
 import jwt from "jsonwebtoken";
 import { configDotenv } from "dotenv";
+import UserModel from "../Model/User.js";
 
 //env file config
 configDotenv();
 
 const verifyAdmin = async (req, res, next) => {
   const token = req.cookies.jwt;
-  
   try {
     // Get the token from the request cookies
-    console.log(token);
     if (!token) {
       return res.status(401).json({
         message:

@@ -15,10 +15,6 @@ const userAuthSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  token: {
-    type: String,
-    required: true,
-  },
 });
 
 // Create and export User_Auth model

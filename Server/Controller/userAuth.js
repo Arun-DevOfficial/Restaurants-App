@@ -87,7 +87,7 @@ const handleLogin = async (req, res) => {
       const cookieOptions = {
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         httpOnly: true,
-        domain: "localhost",
+        domain: "restaurantsapp-git-master-arundevils-projects.vercel.app",
       };
       res.cookie("jwt", token, cookieOptions);
       return res.status(200).json({ message: "User login successful." });

@@ -33,12 +33,12 @@ export default function Login() {
       console.log(data);
 
       // Sending form data to the backend for signup
-      const response = await axios.post(
-        `http://localhost:8060/Login`,
-        data,
-        {}
-      );
-
+      const response = await axios.post(`http://localhost:8060/Login`, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
       // Handling response messages
       let message;
       if (response.status >= 200 && response.status < 300) {

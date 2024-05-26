@@ -9,7 +9,7 @@ export default function ListeUser() {
   const handleListeUser = async () => {
     try {
       const response = await axios.get(
-        "https://server-restaurants-app.onrender.com/test",
+        `${import.meta.env.VITE_BACKEND_URL}/test`,
         {
           headers: {
             "Content-Type": "application/json",

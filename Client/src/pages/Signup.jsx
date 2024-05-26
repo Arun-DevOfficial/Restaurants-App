@@ -35,7 +35,7 @@ export default function Signup() {
 
       // Sending form data to the backend for signup
       const response = await axios.post(
-        `https://server-restaurants-app.onrender.com/signup`,
+        `${import.meta.env.VITE_BACKEND_URL}/signup`,
         data
       );
 

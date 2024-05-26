@@ -36,12 +36,16 @@ export default function Login() {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Sending form data to the backend for signup
-      const response = await axios.post(`https://server-restaurants-app.onrender.com/Login`, data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/Login`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
       // await setUserName(response.data);
       // console.log(username);
       // Handling response messages

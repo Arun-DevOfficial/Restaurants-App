@@ -17,6 +17,7 @@ router.use(
   cors({
     origin: "https://restaurants-app-green.vercel.app",
     credentials: true,
+    methods: ["POST", "GET", "DELETE", "PUT"],
   })
 );
 

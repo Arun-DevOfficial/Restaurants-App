@@ -9,7 +9,6 @@ import "../pages/style.css";
 
 export default function Signup() {
   const navigate = useNavigate();
-
   // Schema for formData validation
   const schema = z.object({
     fullName: z.string().nonempty("Full name is required"),

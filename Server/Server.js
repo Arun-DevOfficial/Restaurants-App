@@ -14,6 +14,8 @@ configDotenv();
 // Router Setup
 app.use(router);
 
+app.use(express.json());
+
 // PORT NO
 const PORT = process.env.PORT || 5050;
 

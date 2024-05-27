@@ -84,14 +84,14 @@ const handleLogin = async (req, res) => {
           expiresIn: "90d",
         }
       );
-      //Cookie Config
-      // const cookieOptions = {
-      //   expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      //   httpOnly: true,
-      //   secure: true,
-      //   sameSite: true,
-      //   domain: ".restaurants-app-green.vercel.app", //Cokkie domain
-      // };
+      // Cookie Config
+      const cookieOptions = {
+        expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+        secure: true,
+        sameSite: true,
+        domain: "localhost", //Cokkie domain
+      };
       return res.status(200).json({ message: "User login successful." });
     } else {
       // Password doesn't match

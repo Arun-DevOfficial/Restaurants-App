@@ -2,19 +2,15 @@ import express from "express";
 import { router } from "./Router/Router.js";
 import mongoose from "mongoose";
 import { configDotenv } from "dotenv";
-import cors from "cors";
 
 // Express setup
 const app = express();
-app.use(cors());
 
 //.env file config
 configDotenv();
 
 // Router Setup
 app.use(router);
-
-app.use(express.json());
 
 // PORT NO
 const PORT = process.env.PORT || 5050;

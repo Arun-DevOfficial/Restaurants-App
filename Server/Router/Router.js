@@ -10,10 +10,15 @@ import VerifyUser from "../Middleware/VerifyUser.js";
 const router = express.Router();
 
 // Middleware
-// router.use(LoggerMiddleware);
-// router.use(express.json());
-// router.use(cookieParser());
-// router.use(cors());
+router.use(LoggerMiddleware);
+router.use(express.json());
+router.use(cookieParser());
+router.use(
+  cors({
+    origin: ["http://localhost:5731"],
+    credentials: true,
+  })
+);
 
 // Routes
 router.post("/signup", handleSignUp);

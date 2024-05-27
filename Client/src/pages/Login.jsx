@@ -6,13 +6,9 @@ import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import "../pages/style.css";
-// import { createContext, useState } from "react";
 
 export default function Login() {
-  // const [username, setUserName] = useState();
-
   const navigate = useNavigate();
-  // const NameContext = createContext(null); // Context api
 
   // Schema for formData validation
   const schema = z.object({
@@ -36,19 +32,12 @@ export default function Login() {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Sending form data to the backend for signup
-      const response = await axios.post(
-        `https://server-restaurants-app.onrender.com/login`,
-        data,
-        // {
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   // withCredentials: true,
-        // }
-      );
-      // await setUserName(response.data);
-      // console.log(username);
-      // Handling response messages
+      const response = await axios.post(`/login`, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
       let message;
       if (response.status >= 200 && response.status < 300) {
         message = response.data.message;

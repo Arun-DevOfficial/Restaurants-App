@@ -8,15 +8,12 @@ export default function ListeUser() {
 
   const handleListeUser = async () => {
     try {
-      const response = await axios.get(
-        `https://server-restaurants-app.onrender.com/test`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true, // Fix: withCredentials should be boolean
-        }
-      );
+      const response = await axios.get(`/test`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true, // Fix: withCredentials should be boolean
+      });
       console.log(response.data);
     } catch (error) {
       console.error("Error fetching user list:", error);

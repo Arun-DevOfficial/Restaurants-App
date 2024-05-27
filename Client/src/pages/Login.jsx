@@ -37,7 +37,7 @@ export default function Login() {
 
       // Sending form data to the backend for signup
       const response = await axios.post(
-        `https://server-restaurants-app.onrender.com/Login`,
+        `https://server-restaurants-app.onrender.com/login`,
         data,
         // {
         //   headers: {

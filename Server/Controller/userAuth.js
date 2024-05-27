@@ -54,7 +54,6 @@ const handleSignUp = async (req, res) => {
 
 const handleLogin = async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
   // Error Handling
   try {
     // Check if fullName, email, and password are provided

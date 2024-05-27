@@ -107,9 +107,9 @@ const handleLogin = async (req, res) => {
   }
 };
 
-//Handle Logout
-// const handleLogout = (req, res) => {
-//   res.clearCookie("jwt", { sameSite: "none", secure: true }).status(200).json();
-// };
+// Handle Logout
+const handleLogout = (req, res) => {
+  res.clearCookie("jwt", { sameSite: "none", secure: true }).status(200).json();
+};
 
-export { handleSignUp, handleLogin };
+export { handleSignUp, handleLogin, handleLogout };

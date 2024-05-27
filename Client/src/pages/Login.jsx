@@ -39,12 +39,12 @@ export default function Login() {
       const response = await axios.post(
         `https://server-restaurants-app.onrender.com/Login`,
         data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
+        // {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   // withCredentials: true,
+        // }
       );
       // await setUserName(response.data);
       // console.log(username);

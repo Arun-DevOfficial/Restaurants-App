@@ -60,7 +60,7 @@ const handleLogin = async (req, res) => {
     if (!email || !password) {
       return res
         .status(400)
-        .json({ message: "Email, and password are required!" });
+        .json({ message: "Email and password are required!" });
     }
 
     // Check if the user with the provided email exists

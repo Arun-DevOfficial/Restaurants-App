@@ -13,13 +13,7 @@ const router = express.Router();
 router.use(LoggerMiddleware);
 router.use(express.json());
 router.use(cookieParser());
-router.use(
-  cors({
-    origin: "https://restaurants-app-green.vercel.app",
-    credentials: true,
-    methods: ["POST", "GET", "DELETE", "PUT"],
-  })
-);
+router.use(cors());
 
 // Routes
 router.post("/signup", handleSignUp);

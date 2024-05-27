@@ -89,7 +89,7 @@ const handleLogin = async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: true,
-        domain: ".restaurants-app-green.vercel.app",
+        domain: ".restaurants-app-green.vercel.app", //Cokkie domain
       };
       return res
         .status(200)

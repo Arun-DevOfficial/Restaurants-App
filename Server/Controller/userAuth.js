@@ -84,16 +84,15 @@ const handleLogin = async (req, res) => {
         }
       );
       //Cookie Config
-      const cookieOptions = {
-        expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-        httpOnly: true,
-        secure: true,
-        sameSite: true,
-        domain: ".restaurants-app-green.vercel.app", //Cokkie domain
-      };
+      // const cookieOptions = {
+      //   expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      //   httpOnly: true,
+      //   secure: true,
+      //   sameSite: true,
+      //   domain: ".restaurants-app-green.vercel.app", //Cokkie domain
+      // };
       return res
         .status(200)
-        .cookie("jwt", token, cookieOptions)
         .json({ message: "User login successful." });
     } else {
       // Password doesn't match

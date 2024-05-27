@@ -54,6 +54,7 @@ const handleSignUp = async (req, res) => {
 
 const handleLogin = async (req, res) => {
   const { email, password } = req.body;
+  console.log(email, password);
   // Error Handling
   try {
     // Check if fullName, email, and password are provided
@@ -91,9 +92,7 @@ const handleLogin = async (req, res) => {
       //   sameSite: true,
       //   domain: ".restaurants-app-green.vercel.app", //Cokkie domain
       // };
-      return res
-        .status(200)
-        .json({ message: "User login successful." });
+      return res.status(200).json({ message: "User login successful." });
     } else {
       // Password doesn't match
       return res.status(401).json({ message: "Incorrect email or password." });

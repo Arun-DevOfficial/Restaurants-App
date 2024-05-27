@@ -34,7 +34,7 @@ export default function Signup() {
 
       // Sending form data to the backend for signup
       const response = await axios.post(
-        `https://restaurants-app-sl8q.vercel.app/signup`,
+        `https://server-restaurants-app.onrender.com/signup`,
         data
       );
 

@@ -9,7 +9,7 @@ export default function ListeUser() {
   const handleListeUser = async () => {
     try {
       const response = await axios.get(
-        `https://restaurants-app-sl8q.vercel.app/test`,
+        `https://server-restaurants-app.onrender.com/test`,
         {
           headers: {
             "Content-Type": "application/json",

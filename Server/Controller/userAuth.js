@@ -89,7 +89,7 @@ const handleLogin = async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        domain: "vercel.app", // Frontend domain
+        // domain: "vercel.app", // Frontend domain
     };
 
       return res

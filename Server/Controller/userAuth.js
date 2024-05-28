@@ -89,8 +89,9 @@ const handleLogin = async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: true,
-        domain: "localhost", //Cokkie domain
+        domain: ".restaurants-app-green.vercel.app", //Cokkie domain
       };
+
       return res
         .status(200)
         .cookie("jwt", token, cookieOptions)

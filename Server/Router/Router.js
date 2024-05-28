@@ -15,7 +15,7 @@ router.use(express.json());
 router.use(cookieParser());
 router.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://restaurants-app-green.vercel.app",
     credentials: true,
   })
 );

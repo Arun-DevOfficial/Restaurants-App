@@ -88,9 +88,9 @@ const handleLogin = async (req, res) => {
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         httpOnly: true,
         secure: true,
-        // sameSite: true,
-        domain: ".restaurants-app-green.vercel.app", //Cokkie domain
-      };
+        sameSite: "none",
+        domain: "vercel.app", // Frontend domain
+    };
 
       return res
         .status(200)

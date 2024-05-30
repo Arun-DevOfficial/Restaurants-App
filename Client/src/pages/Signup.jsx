@@ -2,13 +2,16 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/Logo.png";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import "../pages/style.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 export default function Signup() {
   const navigate = useNavigate();
+  const [showPassword, setPassword] = useState(false);
   // Schema for formData validation
   const schema = z.object({
     fullName: z.string().nonempty("Full name is required"),
@@ -51,6 +54,17 @@ export default function Signup() {
       }, 2000);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleShowPassword = () => {
+    const password = document.querySelector("#pwd");
+    if (password.type === "password") {
+      password.type = "text";
+      setPassword(true);
+    } else {
+      password.type = "password";
+      setPassword(false);
     }
   };
 
@@ -148,14 +162,22 @@ export default function Signup() {
                   </p>
                 )}
 
-                <div className="bg-white rounded-lg w-full p-5 border border-gray-300 focus-within:border-orange-300">
+                <div className="bg-white rounded-lg w-full p-5 border border-gray-300 focus-within:border-orange-300 flex justify-between items-center">
                   <input
                     type="password"
                     name="password"
+                    id="pwd"
                     placeholder="Password"
                     className="w-full focus:outline-none font-offer focus:border-transparent hover:border-orange-300"
                     {...register("password")}
                   />
+                  <div onClick={handleShowPassword}>
+                    {showPassword ? (
+                      <FaEye className="w-5 cursor-pointer text-slate-500" />
+                    ) : (
+                      <FaEyeSlash className="w-5 cursor-pointer text-slate-500" />
+                    )}
+                  </div>
                 </div>
                 {/* Error message for password field */}
                 {errors.password && (

@@ -9,7 +9,7 @@ export default function Navbar() {
   const toggleDropdown = () => {
     setOpen(!open);
   };
-  
+
   return (
     <header
       className="w-full font-pops lg:w-[80%] mx-auto relative text-white"
@@ -32,7 +32,7 @@ export default function Navbar() {
             <Link to="#">about</Link>
           </li>
           <li>
-            <Link to="#">menu</Link>
+            <Link to="/Menu">menu</Link>
           </li>
           <li>
             <Link to="#">event</Link>

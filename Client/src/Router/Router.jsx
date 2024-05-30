@@ -4,6 +4,7 @@ import NotFound from "../pages/NotFound";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import ListeUser from "../pages/ListeUser";
+import Menu from "../Components/Layouts/Menu";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/Login",
     element: <ListeUser />,
+  },
+  {
+    path: "/Menu",
+    element: <Menu />,
   },
 ]);
 

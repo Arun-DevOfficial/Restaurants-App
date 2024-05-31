@@ -12,14 +12,14 @@ export default function Navbar() {
 
   return (
     <header
-      className="w-full font-pops lg:w-[80%] mx-auto relative text-white"
+      className="w-full font-pops lg:w-[80%] mx-auto relative text-white bg-white/10 backdrop-blur-lg rounded-full lg:px-4"
       data-aos="fade-down"
       data-aos-easing="linear"
       data-aos-duration="1500"
     >
-      <nav className="flex items-center font-medium text-lg p-3 justify-between">
+      <nav className="flex items-center font-medium text-lg lg:p-3 p-2 justify-between">
         <div className="flex items-center">
-          <img src={Logo} alt="Logo" className="max-w-14" />
+          <img src={Logo} alt="Logo" className="lg:max-w-14 max-w-8" />
           <h1 className="text-xl font-semibold">
             Thaai <span className="text-orange-500">food</span>
           </h1>
@@ -56,22 +56,22 @@ export default function Navbar() {
           </button>
         </div>
         {open && (
-          <div className="absolute right-24 top-24 w-48 items-center backdrop-blur-md p-3 bg-black/10 backdrop-blue-sm text-white rounded-lg shadow-md border border-white/10 flex flex-col space-y-4">
+          <div className="absolute right-24 top-24 w-48 items-center backdrop-blur-md p-3 text-black bg-white rounded-lg shadow-md border border-white/10 flex flex-col space-y-4">
             <Link
               to="/profile"
-              className="rounded-lg p-2 font-medium w-full bg-white/10 hover:bg-orange-500 hover:text-white text-center"
+              className="rounded-lg p-2 font-medium w-full bg-slate-50 hover:bg-orange-500 hover:text-white text-center"
             >
               Profile
             </Link>
             <Link
               to="#"
-              className="rounded-lg p-2 bg-white/10 font-medium w-full hover:bg-orange-500 hover:text-white text-center"
+              className="rounded-lg p-2 bg-slate-50 font-medium w-full hover:bg-orange-500 hover:text-white text-center"
             >
               Settings
             </Link>
             <Link
               to="#"
-              className="rounded-lg p-2 font-medium bg-white/10 w-full hover:bg-orange-500 hover:text-white text-center"
+              className="rounded-lg p-2 font-medium bg-slate-50 w-full hover:bg-orange-500 hover:text-white text-center"
             >
               Logout
             </Link>

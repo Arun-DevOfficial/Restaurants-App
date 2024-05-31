@@ -4,7 +4,7 @@ import NotFound from "../pages/NotFound";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import ListeUser from "../pages/ListeUser";
-import Menu from "../Components/Layouts/Menu";
+import Menu from "../pages/Menu";
 
 const router = createBrowserRouter([
   {

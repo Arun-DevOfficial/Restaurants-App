@@ -5,7 +5,6 @@ export default function ListeUser() {
   useEffect(() => {
     handleListeUser();
   }, []);
-
   const handleListeUser = async () => {
     try {
       const response = await axios.get(
@@ -22,5 +21,5 @@ export default function ListeUser() {
       console.error("Error fetching user list:", error);
     }
   };
-  return <div>ListeUser</div>;
+  return <div>lorem</div>;
 }

@@ -27,5 +27,11 @@ mongoose
 
 // Server listening
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}/`);
+  console.log(
+    `Server running on ${
+      process.env.DEVELOPMENT_PHASE === "Production"
+        ? "https://restaurants-app-green.vercel.app"
+        : `http://localhost:${PORT}`
+    }`
+  );
 });

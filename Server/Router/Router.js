@@ -10,6 +10,8 @@ import { LoggerMiddleware } from "../Middleware/Logger.js";
 import { handleServerRuning } from "../Controller/test.js";
 import VerifyUser from "../Middleware/VerifyUser.js";
 import { handleMenuList } from "../Controller/menu.js";
+import { handleSearchItem } from "../Controller/search.js";
+import verifyAdmin from "../Middleware/VerifyUser.js";
 
 // Router Config
 const router = express.Router();
@@ -36,6 +38,7 @@ router.post("/login", handleLogin);
 router.post("/logout", handleLogout);
 router.get("/test", VerifyUser, handleServerRuning);
 router.get("/menu", handleMenuList);
+router.post("/search", handleSearchItem);
 router.get("/view", (req, res) => {
   res.json("Server is running...");
 });

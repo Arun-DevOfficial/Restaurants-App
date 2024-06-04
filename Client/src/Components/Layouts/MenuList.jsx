@@ -50,7 +50,9 @@ export default function Menu() {
           <div>
             {data.map((category, index) => (
               <div key={index} className="mb-8">
-                <h2 className="text-2xl font-medium font-offer mb-4">{category.name}</h2>
+                <h2 className="text-2xl font-medium font-offer mb-4">
+                  {category.name}
+                </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {category.items.map((item, itemIndex) => (
                     <div

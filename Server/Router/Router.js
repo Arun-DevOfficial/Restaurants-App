@@ -38,7 +38,7 @@ router.post("/login", handleLogin);
 router.post("/logout", handleLogout);
 router.get("/test", VerifyUser, handleServerRuning);
 router.get("/menu", handleMenuList);
-router.post("/search", handleSearchItem);
+router.get("/search", handleSearchItem);
 router.get("/view", (req, res) => {
   res.json("Server is running...");
 });

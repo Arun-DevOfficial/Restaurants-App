@@ -1,7 +1,8 @@
 import MenuItem from "../Model/Menu.js";
 
 const handleSearchItem = async (req, res) => {
-  const Query = req.query.q; // Assuming the query parameter is 'q'
+  const Query = req.query.q;
+  console.log(Query); // Assuming the query parameter is 'q'
   try {
     const response = await MenuItem.find({ name: Query });
     res.json(response); // Return the response as JSON

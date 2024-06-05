@@ -9,8 +9,7 @@ import {
 import { LoggerMiddleware } from "../Middleware/Logger.js";
 import { handleServerRuning } from "../Controller/test.js";
 import VerifyUser from "../Middleware/VerifyUser.js";
-import { handleMenuList } from "../Controller/menu.js";
-import { handleSearchItem } from "../Controller/search.js";
+import { handleMenuList, handleSearchItem } from "../Controller/menu.js";
 import verifyAdmin from "../Middleware/VerifyUser.js";
 
 // Router Config

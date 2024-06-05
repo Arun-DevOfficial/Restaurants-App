@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import { FaStar } from "react-icons/fa6";
-import Skeleton from "../Feature/Skeleton"; // Import the Skeleton component
 
 //To share food data
 // const MenuContext = createContext(null);
@@ -10,12 +9,12 @@ export default function Menu() {
   const [data, setData] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   // const [selectData, setSelectData] = useState();
 
   //To get all Menu
   const handleGetMenu = useCallback(async () => {
-    setLoading(true);
+    // setLoading(true);
     try {
       const response = await fetch(
         `${import.meta.env.VITE_LOCAL_BACKEND_URL}/menu`
@@ -29,13 +28,13 @@ export default function Menu() {
     } catch (error) {
       // setError(error.message);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   }, []);
-
+  console.log(searchQuery);
   // To handle search
   const handleSearch = useCallback(async () => {
-    setLoading(true); // Start loading
+    // setLoading(true); // Start loading
     try {
       const response = await fetch(
         `${import.meta.env.VITE_LOCAL_BACKEND_URL}/search?q=${searchQuery}`
@@ -45,10 +44,11 @@ export default function Menu() {
       }
       const searchData = await response.json();
       setSearchResults(searchData);
+      console.log(searchData);
     } catch (error) {
       // Handle error
     } finally {
-      setLoading(false); // Stop loading
+      // setLoading(false); // Stop loading
     }
   }, [searchQuery]);
 
@@ -82,6 +82,32 @@ export default function Menu() {
             />
           </div>
         </div>
+        <div className="my-12">
+          <h1 className="my-8 pl-4 font-offer font-semibold text-2xl">
+            Popluar <span className="font-normal">Choice's</span>
+          </h1>
+          <div className="flex my-12 justify-around">
+            {data.map((category, index) => (
+              <div
+                key={index}
+                onClick={() => {
+                  setSearchQuery(category.name);
+                  handleSearch();
+                }}
+                className="bg-white group text-center flex flex-col items-center shadow-md rounded-2xl cursor-pointer"
+              >
+                <img
+                  src="https://img.icons8.com/?size=100&id=fBRI0EWAcmTk&format=png&color=000000"
+                  alt="icon"
+                  className="bg-slate-100/60 p-10 rounded-t-2xl"
+                />
+                <h1 className="font-offer font-medium w-full rounded-b-2xl group-hover:text-white group-hover:bg-orange-400">
+                  {category.name}
+                </h1>
+              </div>
+            ))}
+          </div>
+        </div>
         <div className="container mx-auto p-4 my-4">
           <h1 className="my-8 font-offer font-semibold text-2xl">
             Choose <span className="font-normal">Order</span>
@@ -90,14 +116,6 @@ export default function Menu() {
             {searchResults.length > 0
               ? searchResults.map((category, index) => (
                   <div key={index} className="mb-8">
-                    {/* Render search results */}
-                  </div>
-                ))
-              : data.map((category, index) => (
-                  <div key={index} className="mb-8">
-                    <h2 className="text-2xl font-medium font-offer mb-4">
-                      {category.name}
-                    </h2>
                     <div
                       className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
                       key={index}
@@ -107,36 +125,70 @@ export default function Menu() {
                           key={itemIndex}
                           className="bg-white shadow-md rounded-lg overflow-hidden"
                         >
-                          {loading ? (
-                            <Skeleton />
-                          ) : (
-                            <>
-                              <img
-                                src={item.image_url}
-                                alt={item.name}
-                                className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
-                                onClick={() => handleData(item)}
-                                loading="lazy"
-                              />
-                              <div className="p-4">
-                                <h3 className="text-xl font-semibold font-offer">
-                                  {item.name}
-                                </h3>
-                                <p className="text-gray-700 mt-2 font-pops">
-                                  Price: ${item.price.toFixed(2)}
-                                </p>
-                                <div className="flex gap-2 items-baseline">
-                                  <FaStar className="text-yellow-500" />
-                                  <FaStar className="text-yellow-500" />
-                                  <FaStar className="text-yellow-500" />
-                                  <FaStar className="text-yellow-500" />
-                                  <p className="text-yellow-500 mt-2 font-pops text-md">
-                                    {item.rating}
-                                  </p>
-                                </div>
-                              </div>
-                            </>
-                          )}
+                          <img
+                            src={item.image_url}
+                            alt={item.name}
+                            className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
+                            onClick={() => handleData(item)}
+                            loading="lazy"
+                          />
+                          <div className="p-4">
+                            <h3 className="text-xl font-semibold font-offer">
+                              {item.name}
+                            </h3>
+                            <p className="text-gray-700 mt-2 font-pops">
+                              Price: ${item.price.toFixed(2)}
+                            </p>
+                            <div className="flex gap-2 items-baseline">
+                              <FaStar className="text-yellow-500" />
+                              <FaStar className="text-yellow-500" />
+                              <FaStar className="text-yellow-500" />
+                              <FaStar className="text-yellow-500" />
+                              <p className="text-yellow-500 mt-2 font-pops text-md">
+                                {item.rating}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))
+              : data.map((category, index) => (
+                  <div key={index} className="mb-8">
+                    <div
+                      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+                      key={index}
+                    >
+                      {category.items.map((item, itemIndex) => (
+                        <div
+                          key={itemIndex}
+                          className="bg-white shadow-md rounded-lg overflow-hidden"
+                        >
+                          <img
+                            src={item.image_url}
+                            alt={item.name}
+                            className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
+                            onClick={() => handleData(item)}
+                            loading="lazy"
+                          />
+                          <div className="p-4">
+                            <h3 className="text-xl font-semibold font-offer">
+                              {item.name}
+                            </h3>
+                            <p className="text-gray-700 mt-2 font-pops">
+                              Price: ${item.price.toFixed(2)}
+                            </p>
+                            <div className="flex gap-2 items-baseline">
+                              <FaStar className="text-yellow-500" />
+                              <FaStar className="text-yellow-500" />
+                              <FaStar className="text-yellow-500" />
+                              <FaStar className="text-yellow-500" />
+                              <p className="text-yellow-500 mt-2 font-pops text-md">
+                                {item.rating}
+                              </p>
+                            </div>
+                          </div>
                         </div>
                       ))}
                     </div>

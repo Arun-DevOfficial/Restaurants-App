@@ -1,16 +1,14 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useContext } from "react";
 import { FiSearch } from "react-icons/fi";
 import { FaStar } from "react-icons/fa6";
-
-//To share food data
-// const MenuContext = createContext(null);
+import { MenuContext } from "../../Context/MenuContext";
 
 export default function Menu() {
   const [data, setData] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   // const [loading, setLoading] = useState(false);
-  // const [selectData, setSelectData] = useState();
+  const { handleAddToCart } = useContext(MenuContext);
 
   //To get all Menu
   const handleGetMenu = useCallback(async () => {
@@ -24,14 +22,13 @@ export default function Menu() {
       }
       const data = await response.json();
       setData(data);
-      console.log(data);
     } catch (error) {
       // setError(error.message);
     } finally {
       // setLoading(false);
     }
   }, []);
-  console.log(searchQuery);
+
   // To handle search
   const handleSearch = useCallback(async () => {
     // setLoading(true); // Start loading
@@ -44,7 +41,6 @@ export default function Menu() {
       }
       const searchData = await response.json();
       setSearchResults(searchData);
-      console.log(searchData);
     } catch (error) {
       // Handle error
     } finally {
@@ -57,9 +53,9 @@ export default function Menu() {
     handleGetMenu();
   }, [handleGetMenu]);
 
-  const handleData = (Data) => {
-    // setSelectData(Data);
-    console.log(Data);
+  // to handle search
+  const handleSearchMenu = (e) => {
+    setSearchQuery(e.target.value);
   };
 
   return (
@@ -78,13 +74,13 @@ export default function Menu() {
               placeholder="Search for food, coffee..."
               className="focus:outline-none bg-transparent placeholder:text-sm placeholder-gray-400 font-pops"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={handleSearchMenu}
             />
           </div>
         </div>
         <div className="my-12">
           <h1 className="my-8 pl-4 font-offer font-semibold text-2xl">
-            Popluar <span className="font-normal">Choice's</span>
+            Popular <span className="font-normal">Choices</span>
           </h1>
           <div className="flex my-12 justify-around">
             {data.map((category, index) => (
@@ -129,7 +125,7 @@ export default function Menu() {
                             src={item.image_url}
                             alt={item.name}
                             className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
-                            onClick={() => handleData(item)}
+                            onClick={() => handleAddToCart(item)}
                             loading="lazy"
                           />
                           <div className="p-4">
@@ -160,37 +156,39 @@ export default function Menu() {
                       className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
                       key={index}
                     >
-                      {category.items.map((item, itemIndex) => (
-                        <div
-                          key={itemIndex}
-                          className="bg-white shadow-md rounded-lg overflow-hidden"
-                        >
-                          <img
-                            src={item.image_url}
-                            alt={item.name}
-                            className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
-                            onClick={() => handleData(item)}
-                            loading="lazy"
-                          />
-                          <div className="p-4">
-                            <h3 className="text-xl font-semibold font-offer">
-                              {item.name}
-                            </h3>
-                            <p className="text-gray-700 mt-2 font-pops">
-                              Price: ${item.price.toFixed(2)}
-                            </p>
-                            <div className="flex gap-2 items-baseline">
-                              <FaStar className="text-yellow-500" />
-                              <FaStar className="text-yellow-500" />
-                              <FaStar className="text-yellow-500" />
-                              <FaStar className="text-yellow-500" />
-                              <p className="text-yellow-500 mt-2 font-pops text-md">
-                                {item.rating}
+                      {category.items.map((item, itemIndex) => {
+                        return (
+                          <div
+                            key={itemIndex}
+                            className="bg-white shadow-md rounded-lg overflow-hidden"
+                          >
+                            <img
+                              src={item.image_url}
+                              alt={item.name}
+                              className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
+                              onClick={() => handleAddToCart(item)}
+                              loading="lazy"
+                            />
+                            <div className="p-4">
+                              <h3 className="text-xl font-semibold font-offer">
+                                {item.name}
+                              </h3>
+                              <p className="text-gray-700 mt-2 font-pops">
+                                Price: ${item.price.toFixed(2)}
                               </p>
+                              <div className="flex gap-2 items-baseline">
+                                <FaStar className="text-yellow-500" />
+                                <FaStar className="text-yellow-500" />
+                                <FaStar className="text-yellow-500" />
+                                <FaStar className="text-yellow-500" />
+                                <p className="text-yellow-500 mt-2 font-pops text-md">
+                                  {item.rating}
+                                </p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 ))}

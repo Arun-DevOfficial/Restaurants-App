@@ -20,18 +20,29 @@ export default function NoCart() {
           <div className="w-full p-2">
             {selectData.map((item) => (
               <div
-                className="my-12 rounded-lg bg-white p-2 shadow-md flex justify-between items-center"
+                className="relative flex flex-col md:flex-row w-full my-3 justify-between rounded-lg bg-white p-3 shadow-md"
                 key={item._id}
               >
+                <button className="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+                  &times;
+                </button>
                 <img
                   src={item.image_url}
                   alt={item.name}
-                  className="w-24 h-24 rounded-lg" // Adjust the width and height here
-                  style={{ objectFit: "cover" }} // Ensure images maintain aspect ratio
+                  className="w-full md:w-28 h-28 rounded-lg object-cover"
                 />
-                <div>
-                  <h1 className="text-xl font-mono">{item.name}</h1>
-                  <p className="my-2 font-mono">$ {item.price}</p>
+                <div className="text-center mt-2 md:mt-0 md:ml-2">
+                  <h1 className="font-semibold">{item.name}</h1>
+                  <p className="my-2">$ {item.price}</p>
+                  <div className="flex gap-4 items-center mt-4 justify-center">
+                    <button className="h-8 w-8 rounded-full bg-orange-500 font-bold text-white hover:bg-orange-400">
+                      +
+                    </button>
+                    <p className="font-bold">{item.quantity}</p>
+                    <button className="h-8 w-8 rounded-full bg-orange-500 font-bold text-white hover:bg-orange-400">
+                      -
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

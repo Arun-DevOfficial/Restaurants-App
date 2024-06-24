@@ -10,13 +10,13 @@ const itemSchema = new Schema({
   rating: { type: Number, required: true },
 });
 
-// Define a schema for categories, which contains an array of items
+// Define a schema for categories.
 const categorySchema = new Schema({
   name: { type: String, required: true },
-  items: [itemSchema], // Embedding the item schema directly
+  items: [itemSchema],
 });
 
 // Model for the combined schema
 const MenuItem = mongoose.model("menus", categorySchema);
 
-export default MenuItem;
+export { MenuItem };

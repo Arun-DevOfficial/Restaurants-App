@@ -14,6 +14,7 @@ app.use(router);
 
 // PORT NO
 const PORT = process.env.PORT || 5050;
+const HOST = process.env.HOST || "localhost";
 
 //DB Connection
 mongoose
@@ -31,7 +32,7 @@ app.listen(PORT, () => {
     `Server running on ${
       process.env.DEVELOPMENT_PHASE === "Production"
         ? "https://restaurants-app-green.vercel.app"
-        : `http://localhost:${PORT}`
+        : `http://${HOST}:${PORT}`
     }`
   );
 });

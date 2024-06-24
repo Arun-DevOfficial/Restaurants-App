@@ -10,7 +10,7 @@ import { LoggerMiddleware } from "../Middleware/Logger.js";
 import { handleServerRuning } from "../Controller/test.js";
 import VerifyUser from "../Middleware/VerifyUser.js";
 import { handleMenuList, handleSearchItem } from "../Controller/menu.js";
-import verifyAdmin from "../Middleware/VerifyUser.js";
+import { handleCheckoutPayment } from "../Controller/payments.js";
 
 // Router Config
 const router = express.Router();
@@ -26,20 +26,20 @@ router.use(
         ? "https://restaurants-app-green.vercel.app"
         : `http://localhost:5173`
     }`,
-
     credentials: true,
   })
 );
 
 // Routes
-router.post("/signup", handleSignUp);
-router.post("/login", handleLogin);
-router.post("/logout", handleLogout);
-router.get("/test", VerifyUser, handleServerRuning);
-router.get("/menu", handleMenuList);
-router.get("/search", handleSearchItem);
+router.post("/signup", handleSignUp); // to register or create a an account
+router.post("/login", handleLogin); // to become verify user
+router.post("/logout", VerifyUser, handleLogout); // to logout if user login
+router.get("/test", VerifyUser, handleServerRuning); // verify the click token
+router.get("/menu", VerifyUser, handleMenuList); // to retrieve list client details
+router.get("/search", handleSearchItem); // search api
+router.post("/create-checkout-session", handleCheckoutPayment); // to create checkout sessio for payment.
 router.get("/view", (req, res) => {
   res.json("Server is running...");
-});
+}); // whether server is runing or not.
 
 export { router };

@@ -83,19 +83,19 @@ const handleLogin = async (req, res) => {
           expiresIn: "90d",
         }
       );
+
       // Cookie Config
       const cookieOptions = {
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         httpOnly: true,
-        // secure: true,
-        sameSite: "none",
-        // domain: "localhost", // Frontend domain
+        // secure: true, // enable it when your development in production
+        // sameSite: "none", // enable it when your development in production
       };
 
       return res
         .status(200)
         .cookie("jwt", token, cookieOptions)
-        .json({ message: "User login successful." });
+        .json({ message: "User login successful..." });
     } else {
       // Password doesn't match
       return res.status(401).json({ message: "Incorrect email or password." });

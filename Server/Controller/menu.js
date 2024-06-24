@@ -1,9 +1,9 @@
-import MenuItem from "../Model/Menu.js";
+import { MenuItem } from "../Model/Menu.js";
 
 export const handleMenuList = async (req, res) => {
   try {
     const category = await MenuItem.find();
-    res.json(category);
+    if (category) return res.json(category);
   } catch (err) {
     res.status(500).json({ message: "Failed to fetch" });
   }
@@ -11,7 +11,7 @@ export const handleMenuList = async (req, res) => {
 
 export const handleSearchItem = async (req, res) => {
   const Query = req.query.q;
-
+  console.log(Query);
   //To handle filtered category
   try {
     const response = await MenuItem.find({ name: Query });

@@ -34,16 +34,12 @@ export default function Login() {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Sending form data to the backend for signup
-      const response = await axios.post(
-        `https://restaurants-app-3dp7.onrender.com/login`,
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
+      const response = await axios.post(`http://localhost:8080/login`, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
       let message;
       if (response.status >= 200 && response.status < 300) {
         message = response.data.message;
@@ -54,7 +50,7 @@ export default function Login() {
 
       // Navigating to login page after signup
       setTimeout(() => {
-        navigate("/Login");
+        navigate("/menu");
       }, 2000);
     } catch (error) {
       console.log(error);

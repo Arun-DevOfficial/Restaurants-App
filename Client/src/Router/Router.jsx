@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import ListeUser from "../pages/ListeUser";
 import Menu from "../pages/Menu";
+import ProtectedRoutes from "../utils/ProtectedRoutes";
 
 const router = createBrowserRouter([
   {
@@ -21,12 +22,17 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/Login",
-    element: <ListeUser />,
-  },
-  {
-    path: "/Menu",
-    element: <Menu />,
+    element: <ProtectedRoutes />,
+    children: [
+      {
+        path: "/viewuser",
+        element: <ListeUser />,
+      },
+      {
+        path: "/menu",
+        element: <Menu />,
+      },
+    ],
   },
 ]);
 

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState, useContext } from "react";
 import { FiSearch } from "react-icons/fi";
 import { FaStar } from "react-icons/fa6";
 import { MenuContext } from "../../Context/MenuContext";
+import axios from "axios";
 
 export default function Menu() {
   const [data, setData] = useState([]);
@@ -14,14 +15,13 @@ export default function Menu() {
   const handleGetMenu = useCallback(async () => {
     // setLoading(true);
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_LOCAL_BACKEND_URL}/menu`
-      );
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      setData(data);
+      const response = await axios.get(`http://localhost:8080/menu`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+      setData(response.data);
     } catch (error) {
       // setError(error.message);
     } finally {
@@ -93,9 +93,9 @@ export default function Menu() {
                 className="bg-white group text-center flex flex-col items-center shadow-md rounded-2xl cursor-pointer"
               >
                 <img
-                  src="https://img.icons8.com/?size=100&id=fBRI0EWAcmTk&format=png&color=000000"
+                  src={category.category_image_url}
                   alt="icon"
-                  className="bg-slate-100/60 p-10 rounded-t-2xl"
+                  className="bg-slate-100/60 w-48 h-44 rounded-t-2xl"
                 />
                 <h1 className="font-offer font-medium w-full rounded-b-2xl group-hover:text-white group-hover:bg-orange-400">
                   {category.name}

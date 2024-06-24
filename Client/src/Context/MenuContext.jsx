@@ -5,16 +5,28 @@ export const MenuContext = createContext();
 
 export const MenuProvider = ({ children }) => {
   const [selectData, setSelectData] = useState([]);
+  const [CartCount, setCartCount] = useState(0);
+  const [filterData, setFilterData] = useState([]);
 
   //To add food
   const handleAddToCart = (Item) => {
-    setSelectData((prevSelectData) => [...prevSelectData, Item]);
-    console.log(selectData);
+    try {
+      setSelectData((prevSelectData) => [...prevSelectData, Item]);
+      setCartCount(CartCount + 1);
+      console.log(selectData);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   //To remove food from cart
-  const handleRemoveToCart = (Item) => {
-    console.log(Item);
+  const handleRemoveToCart = (id) => {
+    setCartCount(CartCount - 1);
+    console.log(id);
+    setFilterData(id);
+    setSelectData(() => {
+      return selectData.filter((item) => item.id !== id);
+    });
   };
 
   return (
@@ -22,6 +34,8 @@ export const MenuProvider = ({ children }) => {
       value={{
         selectData,
         setSelectData,
+        CartCount,
+        filterData,
         handleAddToCart,
         handleRemoveToCart,
       }}

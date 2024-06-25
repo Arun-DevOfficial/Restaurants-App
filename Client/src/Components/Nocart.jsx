@@ -33,9 +33,10 @@ export default function NoCart() {
           headers: {
             "Content-Type": "application/json",
           },
+          withCredentials: true,
         }
       );
-
+      console.log(response);
       const session = await response.data; // Access the response data directly
       console.log(session);
       const result = await stripe.redirectToCheckout({ sessionId: session.id });

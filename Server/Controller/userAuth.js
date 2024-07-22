@@ -65,7 +65,6 @@ const handleLogin = async (req, res) => {
 
     // Check if the user with the provided email exists
     const existingUser = await UserModel.findOne({ email: email });
-
     if (!existingUser) {
       // User doesn't exist
       return res.status(401).json({ message: "User not found." });
@@ -88,13 +87,13 @@ const handleLogin = async (req, res) => {
       const cookieOptions = {
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         httpOnly: true,
-        // secure: true, // enable it when your development in production
-        // sameSite: "none", // enable it when your development in production
+        secure: true, // enable it when your development in production
+        // sameSite: true, // enable it when your development in production
       };
-
+      
       return res
         .status(200)
-        .cookie("jwt", token, cookieOptions)
+        .cookie("jwt",token, cookieOptions)
         .json({ message: "User login successful..." });
     } else {
       // Password doesn't match

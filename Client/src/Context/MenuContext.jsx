@@ -3,11 +3,11 @@ import { createContext, useState } from "react";
 // Create a Context for the menu
 export const MenuContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const MenuProvider = ({ children }) => {
   const [selectData, setSelectData] = useState([]);
   const [CartCount, setCartCount] = useState(0);
   const [filterData, setFilterData] = useState([]);
-
   //To add food
   const handleAddToCart = (Item) => {
     try {

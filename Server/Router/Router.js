@@ -42,4 +42,5 @@ router.get("/view", (req, res) => {
   res.json("Server is running...");
 }); // whether server is runing or not.
 
+
 export { router };

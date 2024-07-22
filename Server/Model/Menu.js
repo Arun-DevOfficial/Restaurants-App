@@ -19,4 +19,5 @@ const categorySchema = new Schema({
 // Model for the combined schema
 const MenuItem = mongoose.model("menus", categorySchema);
 
+//Export the menu
 export { MenuItem };

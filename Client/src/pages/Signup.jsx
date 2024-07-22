@@ -37,7 +37,7 @@ export default function Signup() {
 
       // Sending form data to the backend for signup
       const response = await axios.post(
-        `http://localhost:8080/signup`,
+        `https://restaurants-app-3dp7.onrender.com/signup`,
         data
       );
 

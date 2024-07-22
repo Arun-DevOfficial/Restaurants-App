@@ -27,7 +27,7 @@ export default function NoCart() {
       const data = JSON.stringify(selectData);
       console.log(data);
       const response = await axios.post(
-        "http://localhost:8080/create-checkout-session",
+        "https://restaurants-app-3dp7.onrender.com/create-checkout-session",
         data, // Send the body directly
         {
           headers: {

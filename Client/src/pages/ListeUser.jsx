@@ -8,7 +8,7 @@ export default function ListeUser() {
   const handleListeUser = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/test`,
+        `https://restaurants-app-3dp7.onrender.com/test`,
         {
           headers: {
             "Content-Type": "application/json",

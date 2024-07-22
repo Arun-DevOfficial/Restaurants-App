@@ -34,7 +34,7 @@ export default function Menu() {
     // setLoading(true); // Start loading
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_LOCAL_BACKEND_URL}/search?q=${searchQuery}`
+        `${import.meta.env.VITE_DEPLOYED_BACKEND_URL}/search?q=${searchQuery}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");

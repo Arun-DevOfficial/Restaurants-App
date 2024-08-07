@@ -34,7 +34,7 @@ export default function Login() {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Sending form data to the backend for signup
-      const response = await axios.post(`https://restaurants-app-3dp7.onrender.com/login`, data, {
+      const response = await axios.post(`https://restaurants-app-green.vercel.app/login`, data, {
         headers: {
           "Content-Type": "application/json",
         },

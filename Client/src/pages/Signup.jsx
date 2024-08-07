@@ -36,24 +36,21 @@ export default function Signup() {
       console.log(data);
 
       // Sending form data to the backend for signup
-      const response = await axios.post(
-        `https://restaurants-app-3dp7.onrender.com/signup`,
-        data
-      );
+      const response = await axios.post(`https://restaurants-app-green.vercel.app/signup`, data);
 
       // Handling response messages
-      let message;
-      if (response.status >= 200 && response.status < 300) {
-        message = response.data.message;
+      // let message;
+      if (response.status >= 400 && response.status === 409) {
+        toast.error("Failed to register");
       }
 
-      toast.success(message); // Displaying success message using toast
+      toast.success(response.data.message); // Displaying success message using toast
       // Navigating to login page after signup
       setTimeout(() => {
         navigate("/profile/Login");
       }, 2000);
     } catch (error) {
-      console.log(error);
+      toast.error("Internal Server");
     }
   };
 

@@ -29,7 +29,7 @@ const verifyAdmin = async (req, res, next) => {
         .status(401)
         .json({ message: "Invalid token. User not found." });
     }
-    req.user = user;
+    req.user = user;// req.user === req.body
     // Move to the next middleware or route handler
     next();
   } catch (error) {

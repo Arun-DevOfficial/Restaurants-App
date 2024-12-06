@@ -8,6 +8,7 @@ export const MenuProvider = ({ children }) => {
   const [selectData, setSelectData] = useState([]);
   const [CartCount, setCartCount] = useState(0);
   const [filterData, setFilterData] = useState([]);
+  const [user,setUser] = useState(false)
   //To add food
   const handleAddToCart = (Item) => {
     try {
@@ -38,6 +39,8 @@ export const MenuProvider = ({ children }) => {
         filterData,
         handleAddToCart,
         handleRemoveToCart,
+        user,
+        setUser
       }}
     >
       {children}

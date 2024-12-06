@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, useContext } from "react";
+import { useCallback, useEffect, useState, useContext,useMemo } from "react";
 import { FiSearch } from "react-icons/fi";
 import { FaStar } from "react-icons/fa6";
 import { MenuContext } from "../../Context/MenuContext";
@@ -10,7 +10,7 @@ export default function Menu() {
   const [searchQuery, setSearchQuery] = useState("");
   // const [loading, setLoading] = useState(false);
   const { handleAddToCart } = useContext(MenuContext);
-
+  // const memo = useMemo()
   //To get all Menu
   const handleGetMenu = useCallback(async () => {
     // setLoading(true);

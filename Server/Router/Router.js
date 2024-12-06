@@ -34,7 +34,7 @@ router.use(
 router.post("/signup", handleSignUp); // to register or create a an account
 router.post("/login", handleLogin); // to become verify user
 router.post("/logout", VerifyUser, handleLogout); // to logout if user login
-router.get("/test", VerifyUser, handleServerRuning); // verify the click token
+// router.get("/test", VerifyUser, handleServerRuning); // verify the click token
 router.get("/menu", handleMenuList); // to retrieve list client details
 router.get("/search", handleSearchItem); // search api
 router.post("/create-checkout-session", handleCheckoutPayment); // to create checkout sessio for payment.

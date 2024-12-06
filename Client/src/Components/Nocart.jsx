@@ -25,7 +25,6 @@ export default function NoCart() {
         "pk_test_51OpQC3SJj5zy74CS3Btsbdybeo7GRXic9Ldqv9sYpefsA9Kla4PmvrcWGVyCKHz5XapiznegtYHR0noMd3OnNDLc003X0SzWD4"
       );
       const data = JSON.stringify(selectData);
-      console.log(data);
       const response = await axios.post(
         "https://restaurants-app-3dp7.onrender.com/create-checkout-session",
         data, // Send the body directly

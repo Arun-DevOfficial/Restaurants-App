@@ -10,7 +10,7 @@ const app = express();
 configDotenv();
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("App is runing on port..");
 });
 
 // Router Setup

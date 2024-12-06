@@ -3,12 +3,15 @@ import { router } from "./Router/Router.js";
 import mongoose from "mongoose";
 import { configDotenv } from "dotenv";
 
-
 // Express setup
 const app = express();
 
 //.env file config
 configDotenv();
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
 // Router Setup
 app.use(router);
@@ -19,7 +22,9 @@ const HOST = process.env.HOST || "localhost";
 
 //DB Connection
 mongoose
-  .connect("mongodb+srv://nanthinisampath3009:Nanthini@cluster0.xs26c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+  .connect(
+    "mongodb+srv://nanthinisampath3009:Nanthini@cluster0.xs26c.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  )
   .then(() => {
     console.log("Database Connected...");
   })

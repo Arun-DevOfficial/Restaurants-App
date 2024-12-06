@@ -2,19 +2,19 @@
 FROM node:18-alpine
 
 # Set the working directory in the container
-WORKDIR ./Server/
+WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy only package.json and package-lock.json first to leverage Docker layer caching
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --production
 
-# Copy the rest of the app's code
+# Copy the rest of the application code
 COPY . .
 
-# Expose the port your app runs on (change if needed)
+# Expose the application port (update if your app uses a different port)
 EXPOSE 8080
 
-# Command to start the app
+# Set the default command to run your application
 CMD ["npm", "start"]
